@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  nodejs:
+    restart: always
+    build: ./back-end
+    ports:
+      - "3001:8080"
+    depends_on:
+      - mongo
+    networks:
+      - front-end
+      - back-end
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    command: mongod
+    networks:
+      - back-end
+  mongo_seed:
+    build: ./database
+    networks:
+      - back-end
+
+  reactjs:
+    depends_on:
+      - nodejs
+    build: ./front-end
+    # without these 2 lines, the react-scripts exit after start-up and the container stops
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+    networks:
+      - front-end
+
+networks:
+  front-end:
+  back-end:
