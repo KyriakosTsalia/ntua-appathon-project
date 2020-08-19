@@ -28,7 +28,7 @@ COVID-01: Ταξινόμηση πηγών άρθρων με βάση τον αρ
 mkdir cord19_app && cd cord19_app/
 wget -c https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases/cord-19_2020-08-18.tar.gz -P .
 tar -zxvf cord-19_2020-08-18.tar.gz
-cp ./cord-19_2020-08-18/2020-08-18/metadata.csv .
+cp ./2020-08-18/metadata.csv .
 git clone https://github.com/KyriakosTsalia/ntua-appathon-project.git
 cd ./ntua-appathon-project
 mv ../metadata.csv ./database
